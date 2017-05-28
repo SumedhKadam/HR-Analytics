@@ -1,0 +1,129 @@
+<html>
+<script>
+function plot()
+{
+	document.getElementById("show_plot").innerHTML='<object width="100%" height="100%"  data="cluster1.html" ></object>';
+}
+function generate()
+{
+  var p1 = document.getElementById("c1min_a").value;
+  var p2 = document.getElementById("c1max_a").value;
+  var p3 = document.getElementById("c1min_b").value;
+  var p4 = document.getElementById("c1max_b").value;
+  var p5 = document.getElementById("c2min_a").value;
+  var p6 = document.getElementById("c2max_a").value;
+  var p7 = document.getElementById("c2min_b").value;
+  var p8 = document.getElementById("c2max_b").value;
+  var p9 = document.getElementById("c3min_a").value;
+  var p10 = document.getElementById("c3max_a").value;
+  var p11 = document.getElementById("c3min_b").value;
+  var p12 = document.getElementById("c3max_b").value;
+  var http = new XMLHttpRequest();
+  http.abort(); // to remove any old AJAX object
+  http.open("GET", "cluster_a.php?c1min_a="+p1+"&c1max_a="+p2+"&c1min_b="+p3+"&c1max_b="+p4+"&c2min_a="+p5+"&c2max_a="+p6+"&c2min_b="+p7+"&c2max_b="+p8+"&c3min_a="+p9+"&c3max_a="+p10+"&c3min_b="+p11+"&c3max_b="+p12, true);
+  http.send();
+  
+  http.onreadystatechange= function()
+  {
+   if(http.readyState == 4)
+    {
+	 document.getElementById("show_table").innerHTML = http.responseText;
+	 
+	}
+  }
+} 
+function next()
+{
+	window.location.href= "evaluate.html"
+}
+
+</script>
+<style>
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 2px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: #20b2aa; 
+	margin-left: 600px;
+    color: black; 
+    border: 2px solid #4CAF50;
+}
+
+.button1:hover 
+{
+    background-color: #4CAF50;
+    color: white;
+}
+.button2 {
+    background-color: #20b2aa; 
+	margin-left: 650px;
+    color: black; 
+    border: 2px solid #4CAF50;
+}
+
+.button2:hover 
+{
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+<body onload="plot()" bgcolor="#ffaa80">
+<h1 align="center" style="color:blue">PLOT ANALYSIS</h3>
+
+<div id = "show_plot" style="margin-left:420px;width:500px;height:500px;border:5px solid  #ff661a"></div>
+<br><br><br><br><br>
+<table align = "center" border="10px solid green" style="margin-left:280px">
+<tr>
+<td rowspan="2"></td>
+<td colspan="2" align="center">Satisfaction Level</td>
+<td colspan="2" align="center">Average Monthly Hours</td>
+</tr>
+<tr>
+<td align="center">Min</td>
+<td align="center">Max</td>
+<td align="center">Min</td>
+<td align="center">Max</td>
+</tr>
+<tr>
+<td align="center">Cluster 1</td>
+<td><input type="number" id="c1min_a" style="background-color: #ffaa80;"></td>
+<td><input type="number" id="c1max_a" style="background-color: #ffaa80;"></td>
+<td><input type="number" id="c1min_b" style="background-color: #ffaa80;"></td>
+<td><input type="number" id="c1max_b" style="background-color: #ffaa80;"></td>
+</tr>
+<tr>
+<td align="center">Cluster 2</td>
+<td><input type="number" id="c2min_a" style="background-color: #ffaa80;"></td>
+<td><input type="number" id="c2max_a" style="background-color: #ffaa80;"></td>
+<td><input type="number" id="c2min_b" style="background-color: #ffaa80;"></td>
+<td><input type="number" id="c2max_b" style="background-color: #ffaa80;"></td>
+</tr>
+<tr>
+<td align="center">Cluster 3</td>
+<td><input type="number" id="c3min_a" style="background-color: #ffaa80;"></td>
+<td><input type="number" id="c3max_a" style="background-color: #ffaa80;"></td>
+<td><input type="number" id="c3min_b" style="background-color: #ffaa80;"></td>
+<td><input type="number" id="c3max_b" style="background-color: #ffaa80;"></td>
+</tr>
+</table>
+<br>
+<input type="button" class="button button1" value="GENERATE TABLE" onclick="generate()"/>
+<br><br>
+<input type="button" class="button button2" value="NEXT" onclick="next()"/>
+<br><br><br>
+<div id = "show_table" style="margin-left:100px;width:1200px;border:1px solid black;border-bottom:1px solid white">
+
+</body>
+</html>
