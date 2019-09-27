@@ -4,10 +4,7 @@ $var2 =  $_GET['epass'];
 $var = $var1.".html";
 $flag = 0;
 $con=mysqli_connect('localhost','root','','mysql');
-/*if(!$con)
-{
-	die("Failed to connect".mysqli_connect_error());
-}*/
+
 $result = mysqli_query($con,"SELECT * FROM employee");
 
 while ($array = mysqli_fetch_array($result))
